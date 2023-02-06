@@ -1,6 +1,6 @@
-import request from "supertest";
+import { CraftInterface } from "../controllers/crafts/craft.controller.interfaces";
 import app from "../app";
-import { CraftInterface } from "../controllers/craft.controller.interfaces";
+import request from "supertest";
 
 let newCraft: CraftInterface;
 
