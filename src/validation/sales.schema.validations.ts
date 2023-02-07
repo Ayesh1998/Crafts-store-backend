@@ -7,7 +7,7 @@ export const salesSchema = Joi.object({
     material: Joi.string().max(30).required(),
     price: Joi.string(),
     description: Joi.string(),
-    photo: Joi.string(),
+    photo: Joi.string().allow(null, ''),
     _id: Joi.string().required(),
     sales: Joi.array().items(Joi.number()),
   }),
