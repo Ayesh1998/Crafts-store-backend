@@ -24,7 +24,6 @@ export const addCraft = async (
       price,
       photo,
     };
-console.log(newCraft);
 
     const addedCraft = await addCraftService(newCraft);
     res.status(200).send(addedCraft);

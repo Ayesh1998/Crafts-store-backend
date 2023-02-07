@@ -33,7 +33,6 @@ const CraftSchema: Schema = new Schema(
       type: String,
       required: false,
       unique: false,
-      trim: true,
     },
   },
   {
