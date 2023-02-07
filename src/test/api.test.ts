@@ -4,6 +4,35 @@ import request from "supertest";
 
 let newCraft: CraftInterface;
 
+let randomNo = Math.floor(Math.random() * (324234234 - 234335)) + 324234234;
+
+describe(`User Tests Suites`, () => {
+  test(`Create User.`, async () => {
+    const userData = {
+      email: "user" + randomNo + "@gmail.com",
+      password: "12345",
+      role: "user",
+      first_name: "Ayesh",
+      last_name: "Lakshan",
+    };
+    const res = await request(app).post("/api/user").send(userData);
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("_id");
+  });
+
+  test(`Authenticate user.`, async () => {
+    const userData = {
+      email: "user" + randomNo + "@gmail.com",
+      password: "12345",
+    };
+    const res = await request(app)
+      .post("/api/user/authenticate")
+      .send(userData);
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("_id");
+  });
+});
+
 describe(`Craft Tests Suites`, () => {
   test(`Get Crafts`, async () => {
     const res = await request(app).get("/api/craft").send();

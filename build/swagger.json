@@ -1,0 +1,325 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Swivel Assignment 2",
+        "description": "Crafts CRUD Documentation",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:5000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "Crafts",
+            "description": "API for Crafts"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/craft": {
+            "post": {
+                "tags": [
+                    "Crafts"
+                ],
+                "summary": "Create new craft  in system",
+                "description": "Create new craft  in system",
+                "parameters": [
+                    {
+                        "name": "craft",
+                        "in": "body",
+                        "description": "Craft that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/PostCraft"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New craft is created",
+                        "schema": {
+                            "$ref": "#/definitions/PostCraftResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Crafts"
+                ],
+                "summary": "Get all crafts in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/GetCraftsResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/craft/{craftId}": {
+            "parameters": [
+                {
+                    "name": "craftId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of craft that we want to update or delete",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "delete": {
+                "summary": "Delete craft with given ID",
+                "tags": [
+                    "Crafts"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Craft is deleted",
+                        "schema": {
+                            "$ref": "#/definitions/CraftResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update craft with give ID",
+                "tags": [
+                    "Crafts"
+                ],
+                "parameters": [
+                    {
+                        "name": "craft",
+                        "in": "body",
+                        "description": "Craft with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateCraft"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Craft is updated",
+                        "schema": {
+                            "$ref": "#/definitions/CraftResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create new user  in system",
+                "description": "Create new user  in system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/PostUser"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user is created",
+                        "schema": {
+                            "$ref": "#/definitions/PostUserResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/authenticate": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User authenticate  with the system",
+                "description": "User authenticate  with the system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that we want to authenticate",
+                        "schema": {
+                            "$ref": "#/definitions/PostAuthentication"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Authenticated",
+                        "schema": {
+                            "$ref": "#/definitions/PostUserResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "PostCraft": {
+            "required": [
+                "name",
+                "material",
+                "price",
+                "description"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "material": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "photo": {
+                    "type": "string"
+                }
+            }
+        },
+        "UpdateCraft": {
+            "type": "object",
+            "required": [
+                "name",
+                "material",
+                "price",
+                "description",
+                "_id"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "material": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "photo": {
+                    "type": "string"
+                },
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "GetCraftsResponse": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/UpdateCraft"
+            }
+        },
+        "CraftResponse": {
+            "$ref": "#/definitions/UpdateCraft"
+        },
+        "PostUser": {
+            "required": [
+                "email",
+                "password",
+                "role",
+                "first_name",
+                "last_name"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "PostAuthentication": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "PostUserResponse": {
+            "required": [
+                "email",
+                "password",
+                "role",
+                "first_name",
+                "last_name",
+                "_id"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "_id": {
+                    "type": "string"
+                },
+                "__v": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

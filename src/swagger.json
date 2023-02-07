@@ -121,7 +121,67 @@
            }
          }
        }
-     }
+     }, 
+     "/user": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create new user  in system",
+        "description": "Create new user  in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/PostUser"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/PostUserResponse"
+            }
+          }
+        }
+      }
+    },
+    "/user/authenticate": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User authenticate  with the system",
+        "description": "User authenticate  with the system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to authenticate",
+            "schema": {
+              "$ref": "#/definitions/PostAuthentication"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User Authenticated",
+            "schema": {
+              "$ref": "#/definitions/PostUserResponse"
+            }
+          }
+        }
+      }
+    }
    },
    "definitions": {
      "PostCraft": {
@@ -187,6 +247,79 @@
      },
      "CraftResponse": {
       "$ref": "#/definitions/UpdateCraft"
+    },
+    "PostUser": {
+      "required": [
+        "email",
+        "password",
+        "role",
+        "first_name",
+        "last_name"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        }
+      }
+    },
+    "PostAuthentication": {
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "PostUserResponse": {
+      "required": [
+        "email",
+        "password",
+        "role",
+        "first_name",
+        "last_name",
+        "_id"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+         "_id": {
+          "type": "string"
+        },
+        "__v":{
+          "type": "string"
+        }
+      }
     }
    }
  }
