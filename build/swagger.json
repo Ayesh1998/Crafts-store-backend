@@ -181,6 +181,49 @@
                     }
                 }
             }
+        },
+        "/sales": {
+            "get": {
+                "tags": [
+                    "Sales/Orders"
+                ],
+                "summary": "Get all sales in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AllSalesResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sales/{userId}": {
+            "parameters": [
+                {
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of user that we want to get all orders",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Sales/Orders"
+                ],
+                "summary": "Get all orders related to requested user in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AllOrdersResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -318,6 +361,62 @@
                 },
                 "__v": {
                     "type": "string"
+                }
+            }
+        },
+        "AllOrdersResponse": {
+            "required": [
+                "_id",
+                "prodID",
+                "month",
+                "date",
+                "year"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "month": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "string"
+                },
+                "prodID": {
+                    "$ref": "#/definitions/UpdateCraft"
+                }
+            }
+        },
+        "AllSalesResponse": {
+            "required": [
+                "_id",
+                "prodID",
+                "month",
+                "date",
+                "year",
+                "userId"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "month": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "string"
+                },
+                "prodID": {
+                    "$ref": "#/definitions/UpdateCraft"
+                },
+                "userId": {
+                    "$ref": "#/definitions/PostUserResponse"
                 }
             }
         }
