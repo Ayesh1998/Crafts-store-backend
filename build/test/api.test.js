@@ -19,7 +19,7 @@ let randomNo = Math.floor(Math.random() * (324234234 - 234335)) + 324234234;
 describe(`User Tests Suites`, () => {
     test(`Create User failed.`, () => __awaiter(void 0, void 0, void 0, function* () {
         const userData = {
-            email: "user" + randomNo + "@gmail.com",
+            email: "user@gmail.com",
             password: "12345",
             role: "user",
             first_name: "Ayesh",

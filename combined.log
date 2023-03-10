@@ -293,3 +293,13 @@
 {"body":{},"ip":"::1","level":"info","message":"Incoming request","method":"GET","service":"user-service","url":"/api/craft"}
 {"body":{},"ip":"::1","level":"info","message":"Incoming request","method":"GET","service":"user-service","url":"/api/craft"}
 {"body":{},"ip":"::1","level":"info","message":"Incoming request","method":"GET","service":"user-service","url":"/api/craft"}
+{"body":{"email":"user@gmail.com","first_name":"Ayesh","last_name":"Lakshan","password":"12345","role":"user"},"ip":"::ffff:127.0.0.1","level":"info","message":"Incoming request","method":"POST","service":"user-service","url":"/api/user"}
+{"body":{"email":"0@gmail.com","password":"12345"},"ip":"::ffff:127.0.0.1","level":"info","message":"Incoming request","method":"POST","service":"user-service","url":"/api/user/authenticate"}
+{"body":{},"ip":"::ffff:127.0.0.1","level":"info","message":"Incoming request","method":"GET","service":"user-service","url":"/api/craft"}
+{"body":{"description":"Description","material":"Husk","name":"Spoon","photo":"http://www.spoon.com","price":"100"},"ip":"::ffff:127.0.0.1","level":"info","message":"Incoming request","method":"POST","service":"user-service","url":"/api/craft"}
+{"body":{"description":"Description","material":"Husk","photo":"http://www.spoon.com","price":"100"},"ip":"::ffff:127.0.0.1","level":"info","message":"Incoming request","method":"POST","service":"user-service","url":"/api/craft"}
+{"body":{"_id":"640adc4a40d3734a3c3a78e0","description":"Description","material":"Husk","name":"Broom","photo":"http://www.spoon.com","price":"100"},"ip":"::ffff:127.0.0.1","level":"info","message":"Incoming request","method":"PUT","service":"user-service","url":"/api/craft/640adc4a40d3734a3c3a78e0"}
+{"body":{},"ip":"::ffff:127.0.0.1","level":"info","message":"Incoming request","method":"DELETE","service":"user-service","url":"/api/craft/640adc4a40d3734a3c3a78e0"}
+{"body":{"email":"u@gmail.com","first_name":"Ayesh","last_name":"Lakshan","password":"12345","role":"user"},"ip":"::1","level":"info","message":"Incoming request","method":"POST","service":"user-service","url":"/api/user/"}
+{"body":{"email":"u@gmail.com","first_name":"Ayesh","last_name":"Lakshan","password":"12345","role":"user"},"ip":"::1","level":"info","message":"Incoming request","method":"POST","service":"user-service","url":"/api/user/"}
+{"body":{"email":"user@gmail.com","first_name":"Ayesh","last_name":"Lakshan","password":"12345","role":"user"},"ip":"::1","level":"info","message":"Incoming request","method":"POST","service":"user-service","url":"/api/user/"}
