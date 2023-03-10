@@ -7,7 +7,7 @@
     "test": "jest build/test --runInBand --detectOpenHandles --forceExit",
     "start": "node build/app.js",
     "build": "npx tsc",
-    "sonar":  "node_modules/sonarqube-scanner/src/bin/sonar-scanner"
+    "sonar": "node_modules/sonarqube-scanner/src/bin/sonar-scanner"
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +22,8 @@
     "joi": "^17.6.3",
     "mongoose": "^6.5.5",
     "morgan": "^1.10.0",
-    "swagger-ui-express": "^4.5.0"
+    "swagger-ui-express": "^4.5.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",

@@ -8,9 +8,7 @@ export const postUserSchema = Joi.object({
   last_name: Joi.string(),
 });
 
-export const authenticateUserSchema = Joi.array().items(
-  Joi.object({
-    email: Joi.string().max(30).required(),
-    password: Joi.string().max(30).required(),
-  })
-);
+export const authenticateUserSchema = Joi.object({
+  email: Joi.string().max(30).required(),
+  password: Joi.string().max(30).required(),
+});

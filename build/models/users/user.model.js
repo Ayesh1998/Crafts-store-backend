@@ -60,4 +60,4 @@ const UserSchema = new mongoose_1.Schema({
     timestamps: false,
 });
 //exporting Craft model
-module.exports = mongoose_1.default.model("Users", UserSchema);
+exports.default = mongoose_1.default.model("Users", UserSchema);

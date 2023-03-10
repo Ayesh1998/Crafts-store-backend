@@ -62,4 +62,4 @@ const SalesSchema = new mongoose_1.Schema({
     timestamps: false,
 });
 //exporting Craft model
-module.exports = mongoose_1.default.model("Sales", SalesSchema);
+exports.default = mongoose_1.default.model("Sales", SalesSchema);

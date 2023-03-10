@@ -1,10 +1,13 @@
+import { addUserHandler, authenticateUserHandler } from "../controllers/users/users.controller";
+import { authenticateUserSchema, postUserSchema } from "../validation/users.schema.validation";
+
 import express from "express";
+import { validateBody } from "../middleware/validate.body";
 
 const router = express.Router();
-const Controllers = require("../controllers/index.controller");
 
 //routes for user data
-router.post("/user", Controllers.addUserController);
-router.post("/user/authenticate", Controllers.authenticateUserController);
+router.post("/user", validateBody(postUserSchema), addUserHandler);
+router.post("/user/authenticate", validateBody(authenticateUserSchema), authenticateUserHandler);
 
-export = router;
+export default router;

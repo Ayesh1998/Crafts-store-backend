@@ -41,4 +41,4 @@ const CraftSchema: Schema = new Schema(
 );
 
 //exporting Craft model
-module.exports = mongoose.model<ICraftModel>("Crafts", CraftSchema);
+export default mongoose.model<ICraftModel>("Crafts", CraftSchema);

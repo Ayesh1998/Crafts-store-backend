@@ -1,30 +1,19 @@
 {
-    "swagger": "2.0",
+    "openapi": "3.0.0",
     "info": {
-        "version": "1.0.0",
-        "title": "Swivel Assignment 2",
-        "description": "Crafts CRUD Documentation",
-        "license": {
-            "name": "MIT",
-            "url": "https://opensource.org/licenses/MIT"
-        }
+        "title": "Crafts Backend",
+        "description": "A simple application with CRUD operation",
+        "version": "0.1.9"
     },
-    "host": "localhost:5000",
-    "basePath": "/api",
-    "tags": [
+    "servers": [
         {
-            "name": "Crafts",
-            "description": "API for Crafts"
+            "url": "http://localhost:5000/api",
+            "description": "Dev Server"
+        },
+        {
+            "url": "https://crafts-node-api.herokuapp.com/api",
+            "description": "Production Server"
         }
-    ],
-    "schemes": [
-        "http"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
     ],
     "paths": {
         "/craft": {
@@ -34,16 +23,17 @@
                 ],
                 "summary": "Create new craft  in system",
                 "description": "Create new craft  in system",
-                "parameters": [
-                    {
-                        "name": "craft",
-                        "in": "body",
-                        "description": "Craft that we want to create",
-                        "schema": {
-                            "$ref": "#/definitions/PostCraft"
+                "requestBody": {
+                    "description": "Craft that we want to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/PostCraft"
+                            }
                         }
                     }
-                ],
+                },
                 "produces": [
                     "application/json"
                 ],
@@ -51,7 +41,7 @@
                     "200": {
                         "description": "New craft is created",
                         "schema": {
-                            "$ref": "#/definitions/PostCraftResponse"
+                            "$ref": "#/definitions/CraftResponse"
                         }
                     }
                 }
@@ -102,16 +92,17 @@
                 "tags": [
                     "Crafts"
                 ],
-                "parameters": [
-                    {
-                        "name": "craft",
-                        "in": "body",
-                        "description": "Craft with new values of properties",
-                        "schema": {
-                            "$ref": "#/definitions/UpdateCraft"
+                "requestBody": {
+                    "description": "Craft that we want to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/UpdateCraft"
+                            }
                         }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "Craft is updated",
@@ -129,16 +120,17 @@
                 ],
                 "summary": "Create new user  in system",
                 "description": "Create new user  in system",
-                "parameters": [
-                    {
-                        "name": "user",
-                        "in": "body",
-                        "description": "User that we want to create",
-                        "schema": {
-                            "$ref": "#/definitions/PostUser"
+                "requestBody": {
+                    "description": "User that we want to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/PostUser"
+                            }
                         }
                     }
-                ],
+                },
                 "produces": [
                     "application/json"
                 ],
@@ -159,16 +151,17 @@
                 ],
                 "summary": "User authenticate  with the system",
                 "description": "User authenticate  with the system",
-                "parameters": [
-                    {
-                        "name": "user",
-                        "in": "body",
-                        "description": "User that we want to authenticate",
-                        "schema": {
-                            "$ref": "#/definitions/PostAuthentication"
+                "requestBody": {
+                    "description": "User that we want to authenticate",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/PostAuthentication"
+                            }
                         }
                     }
-                ],
+                },
                 "produces": [
                     "application/json"
                 ],

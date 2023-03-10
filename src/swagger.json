@@ -1,267 +1,234 @@
 {
-   "swagger": "2.0",
-   "info": {
-     "version": "1.0.0",
-     "title": "Swivel Assignment 2",
-     "description": "Crafts CRUD Documentation",
-     "license": {
-       "name": "MIT",
-       "url": "https://opensource.org/licenses/MIT"
-     }
-   },
-   "host": "localhost:5000",
-   "basePath": "/api",
-   "tags": [
-     {
-       "name": "Crafts",
-       "description": "API for Crafts"
-     }
-   ],
-   "schemes": [
-     "http"
-   ],
-   "consumes": [
-     "application/json"
-   ],
-   "produces": [
-     "application/json"
-   ],
-   "paths": {
-     "/craft": {
-       "post": {
-         "tags": [
-           "Crafts"
-         ],
-         "summary": "Create new craft  in system",
-         "description": "Create new craft  in system",
-         "parameters": [
-           {
-             "name": "craft",
-             "in": "body",
-             "description": "Craft that we want to create",
-             "schema": {
-               "$ref": "#/definitions/PostCraft"
-             }
-           }
-         ],
-         "produces": [
-           "application/json"
-         ],
-         "responses": {
-           "200": {
-             "description": "New craft is created",
-             "schema": {
-               "$ref": "#/definitions/PostCraftResponse"
-             }
-           }
-         }
-       },
-       "get": {
-         "tags": [
-           "Crafts"
-         ],
-         "summary": "Get all crafts in system",
-         "responses": {
-           "200": {
-             "description": "OK",
-             "schema": {
-               "$ref": "#/definitions/GetCraftsResponse"
-             }
-           }
-         }
-       }
-     },
-     "/craft/{craftId}": {
-       "parameters": [
-         {
-           "name": "craftId",
-           "in": "path",
-           "required": true,
-           "description": "ID of craft that we want to update or delete",
-           "schema": {
-            "type": "string"
-          }
-         }
-       ],
-       "delete": {
-         "summary": "Delete craft with given ID",
-         "tags": [
-           "Crafts"
-         ],
-         "responses": {
-           "200": {
-             "description": "Craft is deleted",
-             "schema": {
-               "$ref": "#/definitions/CraftResponse"
-             }
-           }
-         }
-       },
-       "put": {
-         "summary": "Update craft with give ID",
-         "tags": [
-           "Crafts"
-         ],
-         "parameters": [
-           {
-             "name": "craft",
-             "in": "body",
-             "description": "Craft with new values of properties",
-             "schema": {
-               "$ref": "#/definitions/UpdateCraft"
-             }
-           }
-         ],
-         "responses": {
-           "200": {
-             "description": "Craft is updated",
-             "schema": {
-               "$ref": "#/definitions/CraftResponse"
-             }
-           }
-         }
-       }
-     }, 
-     "/user": {
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Crafts Backend",
+    "description": "A simple application with CRUD operation",
+    "version": "0.1.9"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api",
+      "description": "Dev Server"
+    },
+    {
+      "url": "https://crafts-node-api.herokuapp.com/api",
+      "description": "Production Server"
+    }
+  ],
+
+  "paths": {
+    "/craft": {
       "post": {
         "tags": [
-          "User"
+          "Crafts"
         ],
-        "summary": "Create new user  in system",
-        "description": "Create new user  in system",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User that we want to create",
-            "schema": {
-              "$ref": "#/definitions/PostUser"
+        "summary": "Create new craft  in system",
+        "description": "Create new craft  in system",
+        "requestBody": {
+          "description": "Craft that we want to create",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/PostCraft"
+              }
             }
           }
-        ],
+        },
         "produces": [
           "application/json"
         ],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "New craft is created",
             "schema": {
-              "$ref": "#/definitions/PostUserResponse"
+              "$ref": "#/definitions/CraftResponse"
             }
           }
         }
-      }
-    },
-    "/user/authenticate": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "User authenticate  with the system",
-        "description": "User authenticate  with the system",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User that we want to authenticate",
-            "schema": {
-              "$ref": "#/definitions/PostAuthentication"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "User Authenticated",
-            "schema": {
-              "$ref": "#/definitions/PostUserResponse"
-            }
-          }
-        }
-      }
-    },
-    "/sales": {
+      },
       "get": {
         "tags": [
-          "Sales/Orders"
+          "Crafts"
         ],
-        "summary": "Get all sales in system",
+        "summary": "Get all crafts in system",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/AllSalesResponse"
+              "$ref": "#/definitions/GetCraftsResponse"
             }
           }
         }
       }
     },
-    "/sales/{userId}": {
+    "/craft/{craftId}": {
       "parameters": [
         {
-          "name": "userId",
+          "name": "craftId",
           "in": "path",
           "required": true,
-          "description": "ID of user that we want to get all orders",
+          "description": "ID of craft that we want to update or delete",
           "schema": {
            "type": "string"
          }
         }
       ],
-      "get": {
+      "delete": {
+        "summary": "Delete craft with given ID",
         "tags": [
-          "Sales/Orders"
+          "Crafts"
         ],
-        "summary": "Get all orders related to requested user in system",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Craft is deleted",
             "schema": {
-              "$ref": "#/definitions/AllOrdersResponse"
+              "$ref": "#/definitions/CraftResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update craft with give ID",
+        "tags": [
+          "Crafts"
+        ],
+        "requestBody": {
+          "description": "Craft that we want to update",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/UpdateCraft"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Craft is updated",
+            "schema": {
+              "$ref": "#/definitions/CraftResponse"
             }
           }
         }
       }
-    }
-   },
-   "definitions": {
-     "PostCraft": {
-       "required": [
-         "name",
-         "material",
-         "price",
-         "description"
+    }, 
+    "/user": {
+     "post": {
+       "tags": [
+         "User"
        ],
-       "properties": {
-         "name": {
-           "type": "string"
-         },
-         "material": {
-           "type": "string"
-         },
-         "price": {
-           "type": "string"
-         },
-         "description": {
-           "type": "string"
-         },
-         "photo": {
-           "type": "string"
+       "summary": "Create new user  in system",
+       "description": "Create new user  in system",
+       "requestBody": {
+        "description": "User that we want to create",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/PostUser"
+            }
+          }
+        }
+      },
+       "produces": [
+         "application/json"
+       ],
+       "responses": {
+         "200": {
+           "description": "New user is created",
+           "schema": {
+             "$ref": "#/definitions/PostUserResponse"
+           }
          }
        }
-     },
-     "UpdateCraft": {
-      "type": "object",
-       "required": [
-        "name",
-         "material",
-         "price",
-         "description",
-         "_id"
+     }
+   },
+   "/user/authenticate": {
+     "post": {
+       "tags": [
+         "User"
        ],
-       "properties":  {
+       "summary": "User authenticate  with the system",
+       "description": "User authenticate  with the system",
+       "requestBody": {
+        "description": "User that we want to authenticate",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/PostAuthentication"
+            }
+          }
+        }
+      },
+       "produces": [
+         "application/json"
+       ],
+       "responses": {
+         "200": {
+           "description": "User Authenticated",
+           "schema": {
+             "$ref": "#/definitions/PostUserResponse"
+           }
+         }
+       }
+     }
+   },
+   "/sales": {
+     "get": {
+       "tags": [
+         "Sales/Orders"
+       ],
+       "summary": "Get all sales in system",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/AllSalesResponse"
+           }
+         }
+       }
+     }
+   },
+   "/sales/{userId}": {
+     "parameters": [
+       {
+         "name": "userId",
+         "in": "path",
+         "required": true,
+         "description": "ID of user that we want to get all orders",
+         "schema": {
+          "type": "string"
+        }
+       }
+     ],
+     "get": {
+       "tags": [
+         "Sales/Orders"
+       ],
+       "summary": "Get all orders related to requested user in system",
+       "responses": {
+         "200": {
+           "description": "OK",
+           "schema": {
+             "$ref": "#/definitions/AllOrdersResponse"
+           }
+         }
+       }
+     }
+   }
+  },
+  "definitions": {
+    "PostCraft": {
+      "required": [
+        "name",
+        "material",
+        "price",
+        "description"
+      ],
+      "properties": {
         "name": {
           "type": "string"
         },
@@ -276,150 +243,177 @@
         },
         "photo": {
           "type": "string"
-        },
-         "_id": {
-           "type": "string"
-         }
-       }
-     },
-     "GetCraftsResponse": {
-       "type": "array",
-       "items": {
-         "$ref": "#/definitions/UpdateCraft"
-       }
-     },
-     "CraftResponse": {
-      "$ref": "#/definitions/UpdateCraft"
-    },
-    "PostUser": {
-      "required": [
-        "email",
-        "password",
-        "role",
-        "first_name",
-        "last_name"
-      ],
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string"
-        },
-        "first_name": {
-          "type": "string"
-        },
-        "last_name": {
-          "type": "string"
         }
       }
     },
-    "PostAuthentication": {
+    "UpdateCraft": {
+     "type": "object",
       "required": [
-        "email",
-        "password"
-      ],
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "PostUserResponse": {
-      "required": [
-        "email",
-        "password",
-        "role",
-        "first_name",
-        "last_name",
+       "name",
+        "material",
+        "price",
+        "description",
         "_id"
       ],
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string"
-        },
-        "first_name": {
-          "type": "string"
-        },
-        "last_name": {
-          "type": "string"
-        },
-         "_id": {
-          "type": "string"
-        },
-        "__v":{
+      "properties":  {
+       "name": {
+         "type": "string"
+       },
+       "material": {
+         "type": "string"
+       },
+       "price": {
+         "type": "string"
+       },
+       "description": {
+         "type": "string"
+       },
+       "photo": {
+         "type": "string"
+       },
+        "_id": {
           "type": "string"
         }
       }
     },
-    "AllOrdersResponse": {
-      "required": [
-        "_id",
-        "prodID",
-        "month",
-        "date",
-        "year"
-      ],
-      "properties": {
-        "_id": {
-          "type": "string"
-        },
-        "month": {
-          "type": "string"
-        },
-        "date": {
-          "type": "string"
-        },
-        "year": {
-          "type": "string"
-        },
-        "prodID": {
-          "$ref": "#/definitions/UpdateCraft"
-        }
+    "GetCraftsResponse": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/UpdateCraft"
       }
     },
-    "AllSalesResponse": {
-      "required": [
-        "_id",
-        "prodID",
-        "month",
-        "date",
-        "year",
-        "userId"
-      ],
-      "properties": {
+    "CraftResponse": {
+     "$ref": "#/definitions/UpdateCraft"
+   },
+   "PostUser": {
+     "required": [
+       "email",
+       "password",
+       "role",
+       "first_name",
+       "last_name"
+     ],
+     "properties": {
+       "email": {
+         "type": "string"
+       },
+       "password": {
+         "type": "string"
+       },
+       "role": {
+         "type": "string"
+       },
+       "first_name": {
+         "type": "string"
+       },
+       "last_name": {
+         "type": "string"
+       }
+     }
+   },
+   "PostAuthentication": {
+     "required": [
+       "email",
+       "password"
+     ],
+     "properties": {
+       "email": {
+         "type": "string"
+       },
+       "password": {
+         "type": "string"
+       }
+     }
+   },
+   "PostUserResponse": {
+     "required": [
+       "email",
+       "password",
+       "role",
+       "first_name",
+       "last_name",
+       "_id"
+     ],
+     "properties": {
+       "email": {
+         "type": "string"
+       },
+       "password": {
+         "type": "string"
+       },
+       "role": {
+         "type": "string"
+       },
+       "first_name": {
+         "type": "string"
+       },
+       "last_name": {
+         "type": "string"
+       },
         "_id": {
-          "type": "string"
-        },
-        "month": {
-          "type": "string"
-        },
-        "date": {
-          "type": "string"
-        },
-        "year": {
-          "type": "string"
-        },
-        "prodID": {
-          "$ref": "#/definitions/UpdateCraft"
-        }
-        ,
-        "userId": {
-          "$ref": "#/definitions/PostUserResponse"
-        }
-      }
-    }
+         "type": "string"
+       },
+       "__v":{
+         "type": "string"
+       }
+     }
+   },
+   "AllOrdersResponse": {
+     "required": [
+       "_id",
+       "prodID",
+       "month",
+       "date",
+       "year"
+     ],
+     "properties": {
+       "_id": {
+         "type": "string"
+       },
+       "month": {
+         "type": "string"
+       },
+       "date": {
+         "type": "string"
+       },
+       "year": {
+         "type": "string"
+       },
+       "prodID": {
+         "$ref": "#/definitions/UpdateCraft"
+       }
+     }
+   },
+   "AllSalesResponse": {
+     "required": [
+       "_id",
+       "prodID",
+       "month",
+       "date",
+       "year",
+       "userId"
+     ],
+     "properties": {
+       "_id": {
+         "type": "string"
+       },
+       "month": {
+         "type": "string"
+       },
+       "date": {
+         "type": "string"
+       },
+       "year": {
+         "type": "string"
+       },
+       "prodID": {
+         "$ref": "#/definitions/UpdateCraft"
+       }
+       ,
+       "userId": {
+         "$ref": "#/definitions/PostUserResponse"
+       }
+     }
    }
- }
+  }
+}

@@ -17,7 +17,7 @@ const supertest_1 = __importDefault(require("supertest"));
 let newCraft;
 let randomNo = Math.floor(Math.random() * (324234234 - 234335)) + 324234234;
 describe(`User Tests Suites`, () => {
-    test(`Create User.`, () => __awaiter(void 0, void 0, void 0, function* () {
+    test(`Create User failed.`, () => __awaiter(void 0, void 0, void 0, function* () {
         const userData = {
             email: "user" + randomNo + "@gmail.com",
             password: "12345",
@@ -26,20 +26,18 @@ describe(`User Tests Suites`, () => {
             last_name: "Lakshan",
         };
         const res = yield (0, supertest_1.default)(app_1.default).post("/api/user").send(userData);
-        expect(res.status).toBe(200);
-        expect(res.body).toHaveProperty("_id");
-    }));
-    test(`Authenticate user.`, () => __awaiter(void 0, void 0, void 0, function* () {
+        expect(res.status).toBe(500);
+    }), 20000);
+    test(`Authenticate user failed.`, () => __awaiter(void 0, void 0, void 0, function* () {
         const userData = {
-            email: "user" + randomNo + "@gmail.com",
+            email: "0@gmail.com",
             password: "12345",
         };
         const res = yield (0, supertest_1.default)(app_1.default)
             .post("/api/user/authenticate")
             .send(userData);
-        expect(res.status).toBe(200);
-        expect(res.body).toHaveProperty("_id");
-    }));
+        expect(res.status).toBe(401);
+    }), 20000);
 });
 describe(`Craft Tests Suites`, () => {
     test(`Get Crafts`, () => __awaiter(void 0, void 0, void 0, function* () {

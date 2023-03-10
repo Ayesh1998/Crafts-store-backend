@@ -12,7 +12,7 @@ exports.postUserSchema = joi_1.default.object({
     first_name: joi_1.default.string(),
     last_name: joi_1.default.string(),
 });
-exports.authenticateUserSchema = joi_1.default.array().items(joi_1.default.object({
+exports.authenticateUserSchema = joi_1.default.object({
     email: joi_1.default.string().max(30).required(),
     password: joi_1.default.string().max(30).required(),
-}));
+});

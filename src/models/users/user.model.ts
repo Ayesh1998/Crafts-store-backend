@@ -42,4 +42,4 @@ const UserSchema: Schema = new Schema(
 );
 
 //exporting Craft model
-module.exports = mongoose.model<IUserModel>("Users", UserSchema);
+export default mongoose.model<IUserModel>("Users", UserSchema);

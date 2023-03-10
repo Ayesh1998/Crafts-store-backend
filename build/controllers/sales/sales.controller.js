@@ -9,16 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addSales = void 0;
-const sales_post_service_1 = require("../../services/sales/sales.post.service");
-const sales_schema_validations_1 = require("../../validation/sales.schema.validations");
+exports.getBoughtCraftsHandler = exports.getAllSalesHandler = exports.addSalesHandler = void 0;
+const sales_service_1 = require("../../services/sales/sales.service");
 //logic of adding sale to the mongoDB
-const addSales = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
-    const { error, value } = sales_schema_validations_1.salesSchema.validate(req.body);
-    if (error) {
-        return res.status(400).send(error);
-    }
+const addSalesHandler = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -33,7 +27,7 @@ const addSales = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
                 userId,
                 year,
             };
-            yield (0, sales_post_service_1.addSalesService)(newSale);
+            yield (0, sales_service_1.addSalesService)(newSale);
         }));
         res.status(200).send();
     }
@@ -41,4 +35,27 @@ const addSales = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).send(error);
     }
 });
-exports.addSales = addSales;
+exports.addSalesHandler = addSalesHandler;
+//logic of getting all sales from the mongoDB
+const getAllSalesHandler = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const sales = yield (0, sales_service_1.getAllSalesService)();
+        res.status(200).send(sales);
+    }
+    catch (error) {
+        res.status(500).send(error);
+    }
+});
+exports.getAllSalesHandler = getAllSalesHandler;
+//logic of getting all bought crafts from the mongoDB
+const getBoughtCraftsHandler = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { userId } = req.params;
+        const boughtCrafts = yield (0, sales_service_1.getSalesByUserService)(userId);
+        res.status(200).send(boughtCrafts);
+    }
+    catch (error) {
+        res.status(500).send(error);
+    }
+});
+exports.getBoughtCraftsHandler = getBoughtCraftsHandler;

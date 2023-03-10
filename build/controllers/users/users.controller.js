@@ -9,16 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addUser = void 0;
-const user_post_service_1 = require("../../services/users/user.post.service");
-const users_schema_validation_1 = require("../../validation/users.schema.validation");
+exports.authenticateUserHandler = exports.addUserHandler = void 0;
+const users_service_1 = require("../../services/users/users.service");
 //logic of adding user to the mongoDB
-const addUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
-    const { error, value } = users_schema_validation_1.postUserSchema.validate(req.body);
-    if (error) {
-        return res.status(400).send(error);
-    }
+const addUserHandler = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, first_name, last_name, password, role } = req.body;
         const newUser = {
@@ -28,11 +22,23 @@ const addUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* 
             password,
             role,
         };
-        const addedUser = yield (0, user_post_service_1.addUserService)(newUser);
+        const addedUser = yield (0, users_service_1.addUserService)(newUser);
         res.status(200).send(addedUser);
     }
     catch (error) {
         res.status(500).send(error);
     }
 });
-exports.addUser = addUser;
+exports.addUserHandler = addUserHandler;
+//user authenticating controller
+const authenticateUserHandler = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
+    try {
+        const user = yield (0, users_service_1.authenticateUserService)(email, password);
+        res.status(200).send(user);
+    }
+    catch (error) {
+        res.status(401).send(error.message);
+    }
+});
+exports.authenticateUserHandler = authenticateUserHandler;

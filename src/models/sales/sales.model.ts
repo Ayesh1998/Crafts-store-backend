@@ -44,4 +44,4 @@ const SalesSchema: Schema = new Schema(
 );
 
 //exporting Craft model
-module.exports = mongoose.model<ISalesModel>("Sales", SalesSchema);
+export default mongoose.model<ISalesModel>("Sales", SalesSchema);
