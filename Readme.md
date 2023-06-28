@@ -47,7 +47,7 @@
 
 - Swagger Documentation - 
   - locally - http://localhost:5000/api-docs/
-  - hosted - https://crafts-node-api.herokuapp.com/api-docs/
+  - hosted -  https://crafts-node-api.onrender.com/api-docs/
 
 # Pipeline Documentation
 
